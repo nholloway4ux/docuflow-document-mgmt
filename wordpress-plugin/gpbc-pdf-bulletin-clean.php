@@ -137,13 +137,13 @@ function gpbc_display_bulletin_clean($atts) {
         $output .= '</div>';
     }
     
-    // Add the download button - styled like in the screenshot
-    $output .= '<div style="text-align: center; margin: 40px 0;">';
+    // Add the download button - full width like in the screenshot
+    $output .= '<div style="margin: 40px 0;">';
     $output .= '<a href="' . esc_url($pdf_url) . '" download="' . esc_attr($pdf_name) . '" ';
     $output .= 'class="gpbc-download-button" ';
-    $output .= 'style="display: inline-block; background: #a94c6a; color: white; padding: 18px 60px; ';
-    $output .= 'text-decoration: none; font-size: 20px; font-family: Arial, sans-serif; ';
-    $output .= 'border-radius: 4px; font-weight: normal; transition: background 0.3s;">';
+    $output .= 'style="display: block; background: #a94c6a; color: white; padding: 20px 40px; ';
+    $output .= 'text-decoration: none; font-size: 20px; font-family: Arial, sans-serif; text-align: center; ';
+    $output .= 'border-radius: 4px; font-weight: normal; transition: background 0.3s; width: 100%; box-sizing: border-box;">';
     $output .= esc_html($atts['button_text']);
     $output .= '</a>';
     $output .= '</div>';
@@ -183,8 +183,9 @@ function gpbc_display_bulletin_clean($atts) {
                 height: 800px !important;
             }
             .gpbc-download-button {
-                font-size: 16px !important;
-                padding: 14px 40px !important;
+                font-size: 18px !important;
+                padding: 16px 30px !important;
+                width: 100% !important;
             }
         }
         @media print {
@@ -282,12 +283,12 @@ function gpbc_display_bulletin_simple($atts) {
     $output .= '<p>For full bulletin view, please download below.</p>';
     $output .= '</div>';
     
-    // Download button exactly like the screenshot
-    $output .= '<div style="text-align: center; margin: 40px 0;">';
+    // Download button - full width
+    $output .= '<div style="margin: 40px 0;">';
     $output .= '<a href="' . esc_url($pdf_url) . '" ';
-    $output .= 'style="display: inline-block; background: #a94c6a; color: white; ';
-    $output .= 'padding: 18px 60px; text-decoration: none; font-size: 20px; ';
-    $output .= 'border-radius: 4px;" ';
+    $output .= 'style="display: block; background: #a94c6a; color: white; ';
+    $output .= 'padding: 20px 40px; text-decoration: none; font-size: 20px; text-align: center; ';
+    $output .= 'border-radius: 4px; width: 100%; box-sizing: border-box;" ';
     $output .= 'onmouseover="this.style.background=\'#8a3c5a\'" ';
     $output .= 'onmouseout="this.style.background=\'#a94c6a\'">';
     $output .= esc_html($atts['button_text']);
