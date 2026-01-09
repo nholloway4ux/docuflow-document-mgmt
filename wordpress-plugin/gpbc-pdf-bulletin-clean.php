@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: GPBC PDF Bulletin Display (Clean Version)
- * Description: Displays PDF content as clean HTML with download button
- * Version: 3.0.0
+ * Description: Displays PDF content as clean HTML with download button - automatically shows most recent PDF
+ * Version: 3.1.0
  * Author: Greater Providence Baptist Church
  */
 
@@ -31,8 +31,8 @@ function gpbc_display_bulletin_clean($atts) {
         // Fetch specific PDF by ID
         $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs/' . sanitize_text_field($atts['id']);
     } else {
-        // Fetch the selected PDF
-        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs/selected';
+        // Fetch all PDFs to get the most recent one
+        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs';
     }
     
     // Set up the request with proper headers
@@ -61,7 +61,7 @@ function gpbc_display_bulletin_clean($atts) {
         return '<div class="gpbc-pdf-error"><p>Invalid response from server.</p></div>';
     }
     
-    // Handle the response based on whether we're fetching a specific PDF or selected PDFs
+    // Handle the response based on whether we're fetching a specific PDF or all PDFs
     $pdf = null;
     
     if (!empty($atts['id'])) {
@@ -70,9 +70,10 @@ function gpbc_display_bulletin_clean($atts) {
             $pdf = $data['data'];
         }
     } else {
-        // Selected PDFs response (array)
+        // All PDFs response - get the most recent one
         if (isset($data['data']) && is_array($data['data']) && !empty($data['data'])) {
-            $pdf = $data['data'][0]; // Get the first selected PDF
+            // The API returns PDFs sorted by created_at DESC (newest first)
+            $pdf = $data['data'][0]; // Get the most recent PDF
         }
     }
     
@@ -235,7 +236,8 @@ function gpbc_display_bulletin_simple($atts) {
     if (!empty($atts['id'])) {
         $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs/' . sanitize_text_field($atts['id']);
     } else {
-        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs/selected';
+        // Fetch all PDFs to get the most recent one
+        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs';
     }
     
     $args = [
@@ -257,7 +259,8 @@ function gpbc_display_bulletin_simple($atts) {
     if (!empty($atts['id'])) {
         $pdf = $data['data'] ?? null;
     } else {
-        $pdf = (isset($data['data'][0])) ? $data['data'][0] : null;
+        // Get the most recent PDF from the list
+        $pdf = (isset($data['data']) && is_array($data['data']) && !empty($data['data'])) ? $data['data'][0] : null;
     }
     
     if (!$pdf) {
