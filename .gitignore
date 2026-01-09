@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+.env.check
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+test-*.js
+test-*.pdf
+*.test.js
+
+# Database migrations (sensitive)
+database-migration*.sql
+enable-public-uploads.sql
+fix-*.sql
+rename-column.sql
+
+# Temporary files
+*.zip
+tmp/
+temp/
+
+# Credentials
+decode-jwt.js
+direct-upload.js
