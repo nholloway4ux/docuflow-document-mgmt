@@ -3,7 +3,7 @@ import { generateStoragePath } from './validations/pdf'
 
 // Storage configuration
 export const STORAGE_CONFIG = {
-  BUCKET_NAME: 'pdf',
+  BUCKET_NAME: 'pdfs',
   MAX_UPLOAD_SIZE: 50 * 1024 * 1024, // 50MB
 } as const
 
