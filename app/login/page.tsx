@@ -12,8 +12,8 @@ export default function SimpleLoginPage() {
   const router = useRouter()
   
   const supabase = useMemo(() => {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xxqwaklciqjarvatwfnv.supabase.co'
-    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4cXdha2xjaXFqYXJ2YXR3Zm52Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4MDE0NTUsImV4cCI6MjA4MzM3NzQ1NX0.FLwurR6LOvm83scKuV0wWy6HuZR49j47_e0CCAvLE-o'
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     
     if (!url || !key) {
       console.error('Supabase configuration missing')
