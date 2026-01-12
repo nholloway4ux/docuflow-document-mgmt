@@ -213,7 +213,7 @@ BEGIN
         NEW.email,
         NEW.id,
         CASE 
-            WHEN NEW.email = 'digitalsleep@gmail.com' THEN 'admin'
+            WHEN NEW.email = 'shawnj@mobileapphero.com' THEN 'admin'
             ELSE 'viewer'
         END
     );
@@ -275,7 +275,7 @@ CREATE POLICY "Users can delete own PDFs" ON storage.objects
 -- 10. CREATE INITIAL ADMIN USER (Optional)
 -- ================================================
 -- Note: First create the user through Supabase Auth, then update their role
--- UPDATE public.users SET role = 'admin' WHERE email = 'digitalsleep@gmail.com';
+-- UPDATE public.users SET role = 'admin' WHERE email = 'shawnj@mobileapphero.com';
 
 -- ================================================
 -- 11. GRANT PERMISSIONS

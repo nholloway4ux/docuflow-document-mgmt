@@ -15,21 +15,19 @@ export class SettingsError extends Error {
 }
 
 // Initialize Supabase client for database operations
-function getDatabaseClient(): SupabaseClient<Database> | null {
-  try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+function getDatabaseClient(): SupabaseClient<Database> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-    if (!supabaseUrl || !supabaseServiceKey) {
-      console.warn('Supabase credentials not found, using mock settings database')
-      return null
-    }
-
-    return createClient<Database>(supabaseUrl, supabaseServiceKey)
-  } catch (error) {
-    console.warn('Failed to initialize Supabase client:', error)
-    return null
+  if (!supabaseUrl || !supabaseServiceKey) {
+    throw new SettingsError(
+      'Supabase credentials not configured. Please set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables.',
+      'CONFIG_ERROR',
+      500
+    )
   }
+
+  return createClient<Database>(supabaseUrl, supabaseServiceKey)
 }
 
 // Mock settings database for development when Supabase is not configured

@@ -45,7 +45,7 @@ export const PDFViewerWrapper: React.FC<PDFViewerWrapperProps> = ({
   if (state.isLoading) {
     console.log('[PDFViewerWrapper] Showing loading state')
     return (
-      <div className={`flex items-center justify-center min-h-screen bg-gray-50 ${className}`}>
+      <div className={`flex items-center justify-center min-h-screen  ${className}`}>
         <div className="flex flex-col items-center space-y-3">
           <Loader2 className="h-10 w-10 animate-spin text-blue-500" />
           <p className="text-gray-600">Loading PDF...</p>
@@ -57,7 +57,7 @@ export const PDFViewerWrapper: React.FC<PDFViewerWrapperProps> = ({
   if (state.error) {
     console.error('[PDFViewerWrapper] Showing error state:', state.error)
     return (
-      <div className={`flex items-center justify-center min-h-screen bg-red-50 ${className}`}>
+      <div className={`flex items-center justify-center min-h-screen  ${className}`}>
         <div className="flex flex-col items-center space-y-3 max-w-md">
           <AlertCircle className="h-10 w-10 text-red-500" />
           <div className="text-center">
@@ -68,7 +68,7 @@ export const PDFViewerWrapper: React.FC<PDFViewerWrapperProps> = ({
                 console.log('[PDFViewerWrapper] Retrying PDF load')
                 setLoadAttempted(false)
               }}
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+              className="mt-4 px-4 py-2 0 text-white rounded hover:bg-red-600 transition-colors"
             >
               Retry
             </button>
@@ -81,7 +81,7 @@ export const PDFViewerWrapper: React.FC<PDFViewerWrapperProps> = ({
   if (!state.currentPage) {
     console.log('[PDFViewerWrapper] No current page available')
     return (
-      <div className={`flex items-center justify-center min-h-screen bg-gray-50 ${className}`}>
+      <div className={`flex items-center justify-center min-h-screen  ${className}`}>
         <div className="text-center text-gray-500">
           <p>No PDF content available</p>
         </div>
@@ -91,12 +91,12 @@ export const PDFViewerWrapper: React.FC<PDFViewerWrapperProps> = ({
 
   console.log('[PDFViewerWrapper] Rendering PDFViewer with page')
   return (
-    <div className={`min-h-screen bg-gray-50 ${className}`}>
+    <div className={`min-h-screen  ${className}`}>
       <PDFViewer
         page={state.currentPage}
         scale={state.scale}
         fitMode={state.fitMode}
-        className="min-h-screen"
+        className="min-h-screen w-full"
       />
       
       {/* Simple navigation controls */}

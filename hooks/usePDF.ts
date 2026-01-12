@@ -35,7 +35,7 @@ const initialState: PDFState = {
   scale: PDF_CONFIG.defaultScale,
   isLoading: false,
   error: null,
-  fitMode: PDF_CONFIG.fitModes.PAGE_FIT,
+  fitMode: PDF_CONFIG.fitModes.PAGE_WIDTH,
 }
 
 export function usePDF(): [PDFState, PDFActions] {

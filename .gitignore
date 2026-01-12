@@ -56,3 +56,5 @@ temp/
 # Credentials
 decode-jwt.js
 direct-upload.js
+.vercel
+.env*.local

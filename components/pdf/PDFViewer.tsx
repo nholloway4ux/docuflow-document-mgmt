@@ -148,7 +148,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
 
   if (!page && showLoading) {
     return (
-      <div className={`flex items-center justify-center bg-gray-100 ${className}`} ref={containerRef}>
+      <div className={`flex items-center justify-center ${className}`} ref={containerRef}>
         <div className="flex flex-col items-center space-y-2 text-gray-500">
           <Loader2 className="h-8 w-8 animate-spin" />
           <p className="text-sm">Loading PDF...</p>
@@ -159,7 +159,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
 
   if (renderError) {
     return (
-      <div className={`flex items-center justify-center bg-red-50 ${className}`} ref={containerRef}>
+      <div className={`flex items-center justify-center ${className}`} ref={containerRef}>
         <div className="flex flex-col items-center space-y-2 text-red-600">
           <AlertCircle className="h-8 w-8" />
           <p className="text-sm text-center px-4">
@@ -173,10 +173,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-auto bg-gray-100 flex items-center justify-center ${className}`}
+      className={`relative overflow-auto flex items-center justify-center ${className}`}
       style={{ 
-        minHeight: containerHeight,
-        maxHeight: '80vh'
+        minHeight: '100vh',
+        width: '100%'
       }}
     >
       {isRendering && (
@@ -190,7 +190,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       
       <canvas
         ref={canvasRef}
-        className="max-w-full max-h-full shadow-lg"
+        className="w-full h-full"
         style={{
           display: page ? 'block' : 'none',
         }}
