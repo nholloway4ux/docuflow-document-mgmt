@@ -29,10 +29,10 @@ function gpbc_display_bulletin_clean($atts) {
     // Determine which API endpoint to use
     if (!empty($atts['id'])) {
         // Fetch specific PDF by ID
-        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs/' . sanitize_text_field($atts['id']);
+        $api_url = 'https://pdfadmin-wordpress-new.vercel.app/api/pdfs/' . sanitize_text_field($atts['id']);
     } else {
         // Fetch all PDFs to get the most recent one
-        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs';
+        $api_url = 'https://pdfadmin-wordpress-new.vercel.app/api/pdfs';
     }
     
     // Set up the request with proper headers
@@ -81,18 +81,26 @@ function gpbc_display_bulletin_clean($atts) {
         return '<div class="gpbc-pdf-error"><p>No bulletin is currently available.</p></div>';
     }
     
-    // Get the PDF URL
+    // Get the PDF details
+    $pdf_id = $pdf['id'] ?? '';
     $pdf_url = $pdf['storage_url'] ?? $pdf['file_path'] ?? '';
-    $pdf_name = $pdf['file_name'] ?? 'Church Bulletin';
+    $pdf_name = $pdf['file_name'] ?? $pdf['filename'] ?? $pdf['original_name'] ?? 'Church Bulletin';
     
-    if (empty($pdf_url)) {
-        return '<div class="gpbc-pdf-error"><p>Bulletin file not found.</p></div>';
+    if (empty($pdf_id)) {
+        return '<div class="gpbc-pdf-error"><p>Bulletin ID not found.</p></div>';
     }
     
-    // Ensure the URL is absolute
+    // Use the Next.js embed page for display
+    $embed_url = 'https://pdfadmin-wordpress-new.vercel.app/embed/' . $pdf_id;
+    
+    // Keep the storage URL for download
+    if (empty($pdf_url)) {
+        $pdf_url = $pdf['storage_url'] ?? $pdf['file_path'] ?? '';
+    }
+    // Ensure download URL is absolute
     if (!filter_var($pdf_url, FILTER_VALIDATE_URL)) {
         if (strpos($pdf_url, '/') === 0) {
-            $pdf_url = 'https://xxqwaklciqjarvatwfnv.supabase.co' . $pdf_url;
+            $pdf_url = 'https://sirvbbqnufgpklyodmqq.supabase.co' . $pdf_url;
         }
     }
     
@@ -113,10 +121,10 @@ function gpbc_display_bulletin_clean($atts) {
         // For now, we'll use an embed approach but styled cleanly
         $output .= '<div class="gpbc-pdf-content" style="background: white; padding: 20px; margin: 20px 0; min-height: 1000px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">';
         
-        // Use iframe but style it to look like native content
-        $output .= '<iframe src="' . esc_url($pdf_url) . '#toolbar=0&navpanes=0&scrollbar=0&view=FitH" ';
+        // Use Next.js embed page for better control over display
+        $output .= '<iframe src="' . esc_url($embed_url) . '" ';
         $output .= 'style="width: 100%; height: 1500px; border: none; background: white;" ';
-        $output .= 'frameborder="0" scrolling="no">';
+        $output .= 'frameborder="0" scrolling="auto">';
         $output .= '</iframe>';
         
         $output .= '</div>';
@@ -124,16 +132,10 @@ function gpbc_display_bulletin_clean($atts) {
         // Option 2: Clean embedded view
         $output .= '<div class="gpbc-pdf-content" style="background: white; margin: 20px 0;">';
         
-        // Use object tag for cleaner embedding
-        $output .= '<object data="' . esc_url($pdf_url) . '#toolbar=0&navpanes=0&scrollbar=0" ';
-        $output .= 'type="application/pdf" style="width: 100%; height: 1500px; border: none;">';
-        
-        // Fallback content
-        $output .= '<iframe src="' . esc_url($pdf_url) . '#toolbar=0&navpanes=0&scrollbar=0" ';
-        $output .= 'style="width: 100%; height: 1500px; border: none;" frameborder="0">';
+        // Use Next.js embed page
+        $output .= '<iframe src="' . esc_url($embed_url) . '" ';
+        $output .= 'style="width: 100%; height: 1500px; border: none;" frameborder="0" scrolling="auto">';
         $output .= '</iframe>';
-        
-        $output .= '</object>';
         $output .= '</div>';
     }
     
