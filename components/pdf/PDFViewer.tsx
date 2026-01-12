@@ -173,10 +173,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
   return (
     <div 
       ref={containerRef}
-      className={`relative overflow-auto flex items-center justify-center ${className}`}
+      className={`relative overflow-auto ${className}`}
       style={{ 
-        minHeight: '100vh',
-        width: '100%'
+        width: '100%',
+        height: '100%'
       }}
     >
       {isRendering && (
@@ -190,7 +190,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       
       <canvas
         ref={canvasRef}
-        className="w-full h-full"
+        className="w-full h-auto block"
         style={{
           display: page ? 'block' : 'none',
         }}

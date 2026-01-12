@@ -91,12 +91,12 @@ export const PDFViewerWrapper: React.FC<PDFViewerWrapperProps> = ({
 
   console.log('[PDFViewerWrapper] Rendering PDFViewer with page')
   return (
-    <div className={`min-h-screen  ${className}`}>
+    <div className={`w-full h-full ${className}`}>
       <PDFViewer
         page={state.currentPage}
         scale={state.scale}
         fitMode={state.fitMode}
-        className="min-h-screen w-full"
+        className="w-full h-full"
       />
       
       {/* Simple navigation controls */}

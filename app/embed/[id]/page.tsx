@@ -93,5 +93,9 @@ export default function EmbedPage({ params }: EmbedPageProps) {
   }
 
   console.log('[EmbedPage] Rendering PDFViewerWrapper with URL:', pdfUrl)
-  return <PDFViewerWrapper url={pdfUrl} />
+  return (
+    <div style={{ width: '100vw', height: '100vh', margin: 0, padding: 0, overflow: 'hidden' }}>
+      <PDFViewerWrapper url={pdfUrl} className="w-full h-full" />
+    </div>
+  )
 }
