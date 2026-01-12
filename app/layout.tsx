@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'PDF Embedder - Secure PDF Display Solution',
   description: 'A secure platform for embedding and displaying PDFs with admin controls',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
 }
 
 export default function RootLayout({
