@@ -17,6 +17,21 @@ export const PDFViewerWrapper: React.FC<PDFViewerWrapperProps> = ({
 }) => {
   const [state, actions] = usePDF()
   const [loadAttempted, setLoadAttempted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+      // Set fit mode based on screen size
+      if (window.innerWidth <= 768) {
+        actions.setFitMode(PDF_CONFIG.fitModes.PAGE_FIT)
+      }
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [actions])
 
   useEffect(() => {
     console.log('[PDFViewerWrapper] Component mounted with URL:', url)

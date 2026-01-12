@@ -41,15 +41,21 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
     
     const availableWidth = containerRect.width || containerWidth
     const availableHeight = containerRect.height || containerHeight
+    
+    // Mobile adjustments
+    const isMobileView = window.innerWidth <= 768
+    const padding = isMobileView ? 10 : 0
+    const effectiveWidth = availableWidth - (padding * 2)
 
     switch (fitMode) {
       case PDF_CONFIG.fitModes.PAGE_WIDTH:
-        return availableWidth / viewport.width
+        // On mobile, add some padding to prevent edge cutoff
+        return effectiveWidth / viewport.width
 
       case PDF_CONFIG.fitModes.PAGE_FIT:
-        const scaleX = availableWidth / viewport.width
+        const scaleX = effectiveWidth / viewport.width
         const scaleY = availableHeight / viewport.height
-        return Math.min(scaleX, scaleY)
+        return Math.min(scaleX, scaleY) * (isMobileView ? 0.95 : 1)
 
       case PDF_CONFIG.fitModes.AUTO:
       default:
