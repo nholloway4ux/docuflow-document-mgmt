@@ -55,7 +55,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       case PDF_CONFIG.fitModes.PAGE_FIT:
         const scaleX = effectiveWidth / viewport.width
         const scaleY = availableHeight / viewport.height
-        return Math.min(scaleX, scaleY) * (isMobileView ? 0.95 : 1)
+        return Math.min(scaleX, scaleY)
 
       case PDF_CONFIG.fitModes.AUTO:
       default:
@@ -84,21 +84,32 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({
       }
 
       const actualScale = calculateScale(page)
-      const viewport = page.getViewport({ scale: actualScale })
+      
+      // Increase resolution for mobile devices to prevent blur
+      const outputScale = window.devicePixelRatio || 1
+      const isMobileView = window.innerWidth <= 768
+      const qualityMultiplier = isMobileView ? 2.5 : 1.5 // Higher quality on mobile
+      
+      const viewport = page.getViewport({ scale: actualScale * outputScale * qualityMultiplier })
 
-      // Set canvas dimensions
+      // Set canvas dimensions with higher resolution
       canvas.height = viewport.height
       canvas.width = viewport.width
+      
+      // Scale canvas back down via CSS to maintain layout size
+      canvas.style.width = `${viewport.width / (outputScale * qualityMultiplier)}px`
+      canvas.style.height = `${viewport.height / (outputScale * qualityMultiplier)}px`
       
       // Clear the canvas
       context.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Render the page
+      // Render the page with high quality
       const renderContext = {
         canvasContext: context,
         viewport: viewport,
         enableWebGL: false,
         canvas: canvas,
+        intent: 'display', // Optimize for display quality
       }
 
       renderTaskRef.current = page.render(renderContext)
