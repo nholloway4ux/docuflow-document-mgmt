@@ -1,7 +1,6 @@
 'use client'
 
 import { usePDFs } from '@/hooks/usePDFs'
-import { AdminHeader } from '@/components/admin/AdminHeader'
 import { QuickStats } from '@/components/admin/StatsCard'
 import { PDFUpload } from '@/components/admin/PDFUpload'
 import { PDFLibrary } from '@/components/admin/PDFLibrary'
@@ -27,10 +26,6 @@ export default function AdminPage() {
     refreshPDFs()
   }
 
-  const handleLogout = () => {
-    // Handle logout functionality
-    window.location.href = '/login'
-  }
 
   const handleView = (pdf: any) => {
     // Open PDF in new tab
@@ -75,13 +70,8 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <AdminHeader onLogout={handleLogout} />
-
-      {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="space-y-8">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="space-y-8">
           {/* Stats overview */}
           <QuickStats
             totalPDFs={totalCount}
@@ -206,11 +196,10 @@ export default function AdminPage() {
               </div>
             </TabsContent>
           </Tabs>
-        </div>
-      </main>
+      </div>
 
       {/* Toast notifications */}
       <Toaster />
-    </div>
+    </main>
   )
 }

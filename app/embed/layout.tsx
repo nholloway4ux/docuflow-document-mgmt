@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Church Bulletin - PDF Embed',
-  description: 'Embeddable PDF viewer for church bulletins and documents',
+  title: 'DocuFlow - Document Viewer',
+  description: 'Embeddable document viewer for secure PDF display',
   robots: {
     index: false,
     follow: false,

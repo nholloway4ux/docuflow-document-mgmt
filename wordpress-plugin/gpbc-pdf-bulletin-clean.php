@@ -29,10 +29,10 @@ function gpbc_display_bulletin_clean($atts) {
     // Determine which API endpoint to use
     if (!empty($atts['id'])) {
         // Fetch specific PDF by ID
-        $api_url = 'https://pdfadmin-wordpress-new.vercel.app/api/pdfs/' . sanitize_text_field($atts['id']);
+        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs/' . sanitize_text_field($atts['id']);
     } else {
         // Fetch all PDFs to get the most recent one
-        $api_url = 'https://pdfadmin-wordpress-new.vercel.app/api/pdfs';
+        $api_url = 'https://pdfadminwordpress.vercel.app/api/pdfs';
     }
     
     // Set up the request with proper headers
@@ -91,7 +91,7 @@ function gpbc_display_bulletin_clean($atts) {
     }
     
     // Use the Next.js embed page for display
-    $embed_url = 'https://pdfadmin-wordpress-new.vercel.app/embed/' . $pdf_id;
+    $embed_url = 'https://pdfadminwordpress.vercel.app/embed/' . $pdf_id;
     
     // Keep the storage URL for download
     if (empty($pdf_url)) {
