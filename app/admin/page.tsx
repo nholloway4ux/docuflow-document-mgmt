@@ -60,10 +60,10 @@ export default function AdminPage() {
   // Show loading state while PDFs are loading
   if (pdfsLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex items-center justify-center h-64">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-2 text-muted-foreground text-sm">Loading...</p>
         </div>
       </div>
     )
@@ -71,6 +71,10 @@ export default function AdminPage() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl text-foreground">Your Documents</h1>
+        <p className="text-muted-foreground mt-1">Manage and publish your PDF library.</p>
+      </div>
       <div className="space-y-8">
           {/* Stats overview */}
           <QuickStats
@@ -91,10 +95,10 @@ export default function AdminPage() {
 
             <TabsContent value="upload" className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                <h2 className="text-2xl text-foreground mb-2">
                   Upload PDFs
                 </h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-muted-foreground mb-6">
                   Upload PDF documents to make them available for embedding on your website.
                 </p>
                 
@@ -108,10 +112,10 @@ export default function AdminPage() {
 
             <TabsContent value="library" className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                <h2 className="text-2xl text-foreground mb-2">
                   PDF Library
                 </h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-muted-foreground mb-6">
                   Manage your uploaded PDFs, select which one to publish, and get embed codes.
                 </p>
                 
@@ -130,17 +134,17 @@ export default function AdminPage() {
 
             <TabsContent value="settings" className="space-y-6">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                <h2 className="text-2xl text-foreground mb-2">
                   Settings
                 </h2>
-                <p className="text-gray-600 mb-6">
+                <p className="text-muted-foreground mb-6">
                   Configure your PDF embedder settings and preferences.
                 </p>
                 
                 <div className="grid gap-6">
                   {/* Account settings */}
                   <div className="bg-white rounded-lg border p-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">
+                    <h3 className="text-lg text-foreground mb-4">
                       Account Information
                     </h3>
                     <div className="space-y-4">
@@ -161,7 +165,7 @@ export default function AdminPage() {
 
                   {/* Storage information */}
                   <div className="bg-white rounded-lg border p-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">
+                    <h3 className="text-lg text-foreground mb-4">
                       Storage Usage
                     </h3>
                     <div className="space-y-4">

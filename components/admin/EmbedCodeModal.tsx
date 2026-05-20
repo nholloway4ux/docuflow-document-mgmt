@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Select,
@@ -125,8 +125,8 @@ export function EmbedCodeModal({
         {/* PDF Info */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center space-x-3">
-              <div className="w-6 h-6 bg-red-100 rounded flex items-center justify-center">
+            <p className="text-sm font-medium text-foreground flex items-center space-x-3">
+              <span className="w-6 h-6 bg-red-100 rounded flex items-center justify-center shrink-0">
                 <svg
                   className="w-3 h-3 text-red-600"
                   fill="currentColor"
@@ -138,21 +138,21 @@ export function EmbedCodeModal({
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
+              </span>
               <span>{truncateFilename(pdf.originalName, 50)}</span>
               {pdf.selected && (
                 <Badge variant="default" className="ml-auto">
                   Published
                 </Badge>
               )}
-            </CardTitle>
+            </p>
           </CardHeader>
         </Card>
 
         {/* Size Configuration */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm">Size Configuration</CardTitle>
+            <p className="text-sm font-medium text-foreground">Size Configuration</p>
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Preset sizes */}
@@ -237,7 +237,7 @@ export function EmbedCodeModal({
           <TabsContent value="responsive" className="space-y-4">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-center justify-between">
+                <p className="text-sm font-medium text-foreground flex items-center justify-between">
                   <span>Responsive Iframe (Recommended)</span>
                   <Button
                     variant="outline"
@@ -257,7 +257,7 @@ export function EmbedCodeModal({
                       </>
                     )}
                   </Button>
-                </CardTitle>
+                </p>
                 <div className="flex items-start space-x-2 text-xs text-blue-600 bg-blue-50 p-2 rounded">
                   <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
                   <span>
@@ -276,7 +276,7 @@ export function EmbedCodeModal({
           <TabsContent value="fixed" className="space-y-4">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-center justify-between">
+                <p className="text-sm font-medium text-foreground flex items-center justify-between">
                   <span>Fixed Size Iframe</span>
                   <Button
                     variant="outline"
@@ -296,7 +296,7 @@ export function EmbedCodeModal({
                       </>
                     )}
                   </Button>
-                </CardTitle>
+                </p>
                 <div className="flex items-start space-x-2 text-xs text-gray-600 bg-gray-50 p-2 rounded">
                   <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
                   <span>
@@ -315,7 +315,7 @@ export function EmbedCodeModal({
           <TabsContent value="wordpress" className="space-y-4">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-center justify-between">
+                <p className="text-sm font-medium text-foreground flex items-center justify-between">
                   <span>WordPress Shortcode</span>
                   <Button
                     variant="outline"
@@ -335,7 +335,7 @@ export function EmbedCodeModal({
                       </>
                     )}
                   </Button>
-                </CardTitle>
+                </p>
                 <div className="flex items-start space-x-2 text-xs text-purple-600 bg-purple-50 p-2 rounded">
                   <Info className="w-3 h-3 mt-0.5 flex-shrink-0" />
                   <span>
@@ -367,7 +367,7 @@ export function EmbedCodeModal({
         {/* Preview Link */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm">Preview</CardTitle>
+            <p className="text-sm font-medium text-foreground">Preview</p>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between p-3 bg-gray-50 rounded border">

@@ -123,11 +123,11 @@ export function PDFUpload({
 
   const dropzoneClasses = cn(
     'border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer',
-    'hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+    'focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent',
     {
-      'border-blue-400 bg-blue-50': isDragAccept,
-      'border-red-400 bg-red-50': isDragReject,
-      'border-gray-300': !isDragActive && !isDragAccept && !isDragReject,
+      'border-primary/40 bg-secondary/50': isDragAccept,
+      'border-destructive/40 bg-destructive/5': isDragReject,
+      'border-border bg-white hover:bg-muted/40': !isDragActive && !isDragAccept && !isDragReject,
     }
   )
 
@@ -137,8 +137,8 @@ export function PDFUpload({
       <div {...getRootProps({ className: dropzoneClasses })}>
         <input {...getInputProps()} />
         <div className="space-y-4">
-          <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-            <Upload className="w-6 h-6 text-blue-600" />
+          <div className="mx-auto w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
+            <Upload className="w-6 h-6 text-primary" />
           </div>
           
           <div>

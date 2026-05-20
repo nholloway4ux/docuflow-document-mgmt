@@ -185,7 +185,7 @@ export function PDFLibrary({
       <Card>
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <CardTitle className="text-lg">PDF Library</CardTitle>
+            <CardTitle>PDF Library</CardTitle>
             <div className="flex items-center space-x-2">
               {onRefresh && (
                 <Button
