@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Badge } from '@/components/ui/badge'
 import { LucideIcon, FileText, CheckCircle, HardDrive, Upload } from 'lucide-react'
@@ -62,21 +62,21 @@ export function StatsCard({
   return (
     <Card className={cn('transition-all hover:shadow-md', className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <p className="font-serif text-[1.25rem] font-normal text-muted-foreground">
           {title}
-        </CardTitle>
+        </p>
         <div className="flex items-center space-x-2">
           {badge && (
             <Badge variant={badge.variant || 'secondary'} className="text-xs">
               {badge.text}
             </Badge>
           )}
-          <Icon className="h-4 w-4 text-muted-foreground" />
+          <Icon className="h-4 w-4 text-primary" />
         </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-1">
-          <div className="text-2xl font-bold tracking-tight">
+          <div className="text-[1.25rem] font-medium tracking-tight">
             {typeof value === 'number' ? value.toLocaleString() : value}
           </div>
           
