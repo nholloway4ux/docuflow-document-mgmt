@@ -105,6 +105,17 @@ git add package.json app/changelog/page.tsx
 git commit -m "chore: bump version to X.Y.Z"
 ```
 
+#### Step 0-H: Tag and push the tag
+Create an annotated tag on the version bump commit:
+```
+git tag -a vX.Y.Z -m "Release vX.Y.Z"
+```
+Then push the tag to the remote:
+```
+git push origin vX.Y.Z
+```
+Confirm to the user: `Tagged and pushed vX.Y.Z`.
+
 ---
 
 ### Phase 1 — Create the pull request
